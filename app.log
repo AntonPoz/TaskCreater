@@ -1,0 +1,227 @@
+2025-05-08 21:33:42 - INFO - <Server sockets=(<asyncio.TransportSocket fd=540, family=2, type=1, proto=0, laddr=('127.0.0.1', 5000)>,)> is serving
+2025-05-08 21:33:42 - INFO - Running on http://127.0.0.1:5000 (CTRL + C to quit)
+2025-05-08 22:03:57 - INFO - Before connect
+2025-05-08 22:03:57 - INFO - After create_models
+2025-05-08 22:03:57 - INFO - <Server sockets=(<asyncio.TransportSocket fd=552, family=2, type=1, proto=0, laddr=('127.0.0.1', 5000)>,)> is serving
+2025-05-08 22:03:57 - INFO - Running on http://127.0.0.1:5000 (CTRL + C to quit)
+2025-05-08 22:04:35 - INFO - Tortoise-ORM shutdown
+2025-05-08 22:14:54 - INFO - Before connect
+2025-05-08 22:14:54 - INFO - After create_models
+2025-05-08 22:14:54 - INFO - <Server sockets=(<asyncio.TransportSocket fd=500, family=2, type=1, proto=0, laddr=('127.0.0.111', 5000)>,)> is serving
+2025-05-08 22:14:54 - INFO - Running on http://127.0.0.111:5000 (CTRL + C to quit)
+2025-05-08 22:15:23 - INFO - In func
+2025-05-08 22:15:36 - INFO - In func
+2025-05-08 22:19:44 - INFO - Tortoise-ORM shutdown
+2025-05-08 22:19:52 - INFO - Before connect
+2025-05-08 22:19:52 - INFO - After create_models
+2025-05-08 22:19:52 - INFO - <Server sockets=(<asyncio.TransportSocket fd=540, family=2, type=1, proto=0, laddr=('127.0.0.1', 5000)>,)> is serving
+2025-05-08 22:19:52 - INFO - Running on http://127.0.0.1:5000 (CTRL + C to quit)
+2025-05-08 22:20:31 - INFO - In func
+2025-05-08 22:20:40 - INFO - In func
+2025-05-08 22:24:11 - INFO - In func
+2025-05-08 22:35:04 - INFO - Before connect
+2025-05-08 22:35:04 - INFO - After create_models
+2025-05-08 22:35:04 - INFO - <Server sockets=(<asyncio.TransportSocket fd=548, family=2, type=1, proto=0, laddr=('127.0.0.1', 5000)>,)> is serving
+2025-05-08 22:35:04 - INFO - Running on http://127.0.0.1:5000 (CTRL + C to quit)
+2025-05-08 22:35:16 - INFO - In func
+2025-05-08 22:35:20 - INFO - In func
+2025-05-08 22:35:24 - INFO - In func
+2025-05-08 22:35:24 - ERROR - Sign in error: Could not build url for endpoint 'ticket_history'. Did you mean 'static' instead?
+Traceback (most recent call last):
+  File "C:\autotestingPython\FlaskServers\TicketCreater\app.py", line 77, in sign_in
+    return redirect(url_for('ticket_history'))
+                    ~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\autotestingPython\FlaskServers\TicketCreater\.venv\Lib\site-packages\quart\helpers.py", line 195, in url_for
+    return current_app.url_for(
+           ~~~~~~~~~~~~~~~~~~~^
+        endpoint,
+        ^^^^^^^^^
+    ...<4 lines>...
+        **values,
+        ^^^^^^^^^
+    )
+    ^
+  File "C:\autotestingPython\FlaskServers\TicketCreater\.venv\Lib\site-packages\quart\app.py", line 756, in url_for
+    return self.handle_url_build_error(error, endpoint, values)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\autotestingPython\FlaskServers\TicketCreater\.venv\Lib\site-packages\quart\app.py", line 752, in url_for
+    url = url_adapter.build(
+        endpoint, values, method=_method, force_external=_external
+    )
+  File "C:\autotestingPython\FlaskServers\TicketCreater\.venv\Lib\site-packages\werkzeug\routing\map.py", line 924, in build
+    raise BuildError(endpoint, values, method, self)
+werkzeug.routing.exceptions.BuildError: Could not build url for endpoint 'ticket_history'. Did you mean 'static' instead?
+2025-05-08 22:38:16 - INFO - Before connect
+2025-05-08 22:38:16 - INFO - After create_models
+2025-05-08 22:38:16 - INFO - <Server sockets=(<asyncio.TransportSocket fd=544, family=2, type=1, proto=0, laddr=('127.0.0.1', 5000)>,)> is serving
+2025-05-08 22:38:16 - INFO - Running on http://127.0.0.1:5000 (CTRL + C to quit)
+2025-05-08 22:38:25 - INFO - In func
+2025-05-08 22:38:31 - INFO - In func
+2025-05-08 22:38:31 - ERROR - Sign in error: Could not build url for endpoint 'ticket_history'. Did you mean 'static' instead?
+Traceback (most recent call last):
+  File "C:\autotestingPython\FlaskServers\TicketCreater\app.py", line 73, in sign_in
+    return redirect(url_for('ticket_history'))
+                    ~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\autotestingPython\FlaskServers\TicketCreater\.venv\Lib\site-packages\quart\helpers.py", line 195, in url_for
+    return current_app.url_for(
+           ~~~~~~~~~~~~~~~~~~~^
+        endpoint,
+        ^^^^^^^^^
+    ...<4 lines>...
+        **values,
+        ^^^^^^^^^
+    )
+    ^
+  File "C:\autotestingPython\FlaskServers\TicketCreater\.venv\Lib\site-packages\quart\app.py", line 756, in url_for
+    return self.handle_url_build_error(error, endpoint, values)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\autotestingPython\FlaskServers\TicketCreater\.venv\Lib\site-packages\quart\app.py", line 752, in url_for
+    url = url_adapter.build(
+        endpoint, values, method=_method, force_external=_external
+    )
+  File "C:\autotestingPython\FlaskServers\TicketCreater\.venv\Lib\site-packages\werkzeug\routing\map.py", line 924, in build
+    raise BuildError(endpoint, values, method, self)
+werkzeug.routing.exceptions.BuildError: Could not build url for endpoint 'ticket_history'. Did you mean 'static' instead?
+2025-05-08 22:41:46 - INFO - Before connect
+2025-05-08 22:41:46 - INFO - After create_models
+2025-05-08 22:41:46 - INFO - <Server sockets=(<asyncio.TransportSocket fd=540, family=2, type=1, proto=0, laddr=('127.0.0.1', 5000)>,)> is serving
+2025-05-08 22:41:46 - INFO - Running on http://127.0.0.1:5000 (CTRL + C to quit)
+2025-05-08 22:41:51 - INFO - In func
+2025-05-08 22:45:38 - INFO - In func
+2025-05-08 22:45:47 - INFO - In func
+2025-05-08 22:51:33 - INFO - Before connect
+2025-05-08 22:51:33 - INFO - After create_models
+2025-05-08 22:51:33 - INFO - <Server sockets=(<asyncio.TransportSocket fd=544, family=2, type=1, proto=0, laddr=('127.0.0.1', 5000)>,)> is serving
+2025-05-08 22:51:33 - INFO - Running on http://127.0.0.1:5000 (CTRL + C to quit)
+2025-05-08 22:51:34 - INFO - In func
+2025-05-08 22:51:38 - INFO - In func
+2025-05-08 22:53:59 - INFO - Before connect
+2025-05-08 22:53:59 - INFO - After create_models
+2025-05-08 22:53:59 - INFO - <Server sockets=(<asyncio.TransportSocket fd=536, family=2, type=1, proto=0, laddr=('127.0.0.1', 5000)>,)> is serving
+2025-05-08 22:53:59 - INFO - Running on http://127.0.0.1:5000 (CTRL + C to quit)
+2025-05-08 22:54:01 - INFO - In func
+2025-05-08 22:54:02 - INFO - In func
+2025-05-08 22:54:04 - INFO - In func
+2025-05-08 22:54:05 - INFO - In func
+2025-05-08 22:54:08 - INFO - In func
+2025-05-08 22:58:38 - INFO - Before connect
+2025-05-08 22:58:39 - INFO - After create_models
+2025-05-08 22:58:39 - INFO - <Server sockets=(<asyncio.TransportSocket fd=536, family=2, type=1, proto=0, laddr=('127.0.0.1', 5000)>,)> is serving
+2025-05-08 22:58:39 - INFO - Running on http://127.0.0.1:5000 (CTRL + C to quit)
+2025-05-08 22:58:43 - INFO - In func
+2025-05-08 22:58:57 - INFO - In func
+2025-05-08 22:59:03 - INFO - In func
+2025-05-08 22:59:10 - INFO - In func
+2025-05-08 22:59:25 - INFO - In func
+2025-05-08 23:01:03 - INFO - Before connect
+2025-05-08 23:01:03 - INFO - After create_models
+2025-05-08 23:01:03 - INFO - <Server sockets=(<asyncio.TransportSocket fd=528, family=2, type=1, proto=0, laddr=('127.0.0.1', 5000)>,)> is serving
+2025-05-08 23:01:03 - INFO - Running on http://127.0.0.1:5000 (CTRL + C to quit)
+2025-05-08 23:01:05 - INFO - In func
+2025-05-08 23:01:24 - INFO - Before connect
+2025-05-08 23:01:24 - INFO - After create_models
+2025-05-08 23:01:24 - INFO - <Server sockets=(<asyncio.TransportSocket fd=540, family=2, type=1, proto=0, laddr=('127.0.0.1', 5000)>,)> is serving
+2025-05-08 23:01:24 - INFO - Running on http://127.0.0.1:5000 (CTRL + C to quit)
+2025-05-08 23:01:25 - INFO - In func
+2025-05-08 23:01:31 - INFO - In func
+2025-05-08 23:02:25 - INFO - Before connect
+2025-05-08 23:02:25 - INFO - After create_models
+2025-05-08 23:02:25 - INFO - <Server sockets=(<asyncio.TransportSocket fd=528, family=2, type=1, proto=0, laddr=('127.0.0.1', 5000)>,)> is serving
+2025-05-08 23:02:25 - INFO - Running on http://127.0.0.1:5000 (CTRL + C to quit)
+2025-05-08 23:02:28 - INFO - In func
+2025-05-08 23:04:39 - INFO - Before connect
+2025-05-08 23:04:39 - INFO - After create_models
+2025-05-08 23:04:39 - INFO - <Server sockets=(<asyncio.TransportSocket fd=532, family=2, type=1, proto=0, laddr=('127.0.0.1', 5000)>,)> is serving
+2025-05-08 23:04:39 - INFO - Running on http://127.0.0.1:5000 (CTRL + C to quit)
+2025-05-08 23:04:43 - INFO - In func
+2025-05-08 23:04:54 - INFO - Before connect
+2025-05-08 23:04:54 - INFO - After create_models
+2025-05-08 23:04:54 - INFO - <Server sockets=(<asyncio.TransportSocket fd=540, family=2, type=1, proto=0, laddr=('127.0.0.1', 5000)>,)> is serving
+2025-05-08 23:04:54 - INFO - Running on http://127.0.0.1:5000 (CTRL + C to quit)
+2025-05-08 23:04:59 - INFO - In func
+2025-05-08 23:05:04 - INFO - In func
+2025-05-08 23:24:31 - INFO - Before connect
+2025-05-08 23:24:31 - INFO - After create_models
+2025-05-08 23:24:31 - INFO - <Server sockets=(<asyncio.TransportSocket fd=540, family=2, type=1, proto=0, laddr=('127.0.0.1', 5000)>,)> is serving
+2025-05-08 23:24:31 - INFO - Running on http://127.0.0.1:5000 (CTRL + C to quit)
+2025-05-08 23:24:45 - INFO - Tortoise-ORM shutdown
+2025-05-08 23:26:22 - INFO - Before connect
+2025-05-08 23:26:22 - INFO - After create_models
+2025-05-08 23:26:22 - INFO - <Server sockets=(<asyncio.TransportSocket fd=540, family=2, type=1, proto=0, laddr=('127.0.0.1', 5000)>,)> is serving
+2025-05-08 23:26:22 - INFO - Running on http://127.0.0.1:5000 (CTRL + C to quit)
+2025-05-08 23:27:27 - INFO - Tortoise-ORM shutdown
+2025-05-08 23:27:34 - INFO - Before connect
+2025-05-08 23:27:34 - INFO - After create_models
+2025-05-08 23:27:34 - INFO - <Server sockets=(<asyncio.TransportSocket fd=540, family=2, type=1, proto=0, laddr=('127.0.0.1', 5000)>,)> is serving
+2025-05-08 23:27:34 - INFO - Running on http://127.0.0.1:5000 (CTRL + C to quit)
+2025-05-08 23:27:36 - INFO - In func
+2025-05-08 23:35:12 - INFO - Tortoise-ORM shutdown
+2025-05-08 23:35:19 - INFO - Before connect
+2025-05-08 23:35:19 - INFO - After create_models
+2025-05-08 23:35:19 - INFO - <Server sockets=(<asyncio.TransportSocket fd=528, family=2, type=1, proto=0, laddr=('127.0.0.1', 5000)>,)> is serving
+2025-05-08 23:35:19 - INFO - Running on http://127.0.0.1:5000 (CTRL + C to quit)
+2025-05-08 23:35:27 - INFO - In func
+2025-05-08 23:35:45 - INFO - In func
+2025-05-08 23:37:20 - INFO - Before connect
+2025-05-08 23:37:20 - INFO - After create_models
+2025-05-08 23:37:20 - INFO - <Server sockets=(<asyncio.TransportSocket fd=540, family=2, type=1, proto=0, laddr=('127.0.0.1', 5000)>,)> is serving
+2025-05-08 23:37:20 - INFO - Running on http://127.0.0.1:5000 (CTRL + C to quit)
+2025-05-08 23:37:26 - INFO - In func
+2025-05-08 23:37:30 - INFO - Tortoise-ORM shutdown
+2025-05-09 13:16:23 - INFO - Before connect
+2025-05-09 13:16:23 - INFO - After create_models
+2025-05-09 13:16:23 - INFO - <Server sockets=(<asyncio.TransportSocket fd=552, family=2, type=1, proto=0, laddr=('127.0.0.1', 5000)>,)> is serving
+2025-05-09 13:16:23 - INFO - Running on http://127.0.0.1:5000 (CTRL + C to quit)
+2025-05-09 13:16:25 - WARNING - Executing <Task finished name='Task-23' coro=<ASGIHTTPConnection.handle_request() done, defined at C:\autotestingPython\FlaskServers\TicketCreater\.venv\Lib\site-packages\quart\asgi.py:106> result=None created at C:\Users\理蝾韁AppData\Local\Programs\Python\Python313\Lib\asyncio\tasks.py:748> took 0.135 seconds
+2025-05-09 13:16:34 - INFO - In func
+2025-05-09 13:16:37 - INFO - In func
+2025-05-09 13:16:51 - INFO - In func
+2025-05-09 13:16:58 - INFO - In func
+2025-05-09 13:21:34 - INFO - In func
+2025-05-09 13:24:52 - INFO - In func
+2025-05-09 15:15:32 - INFO - Before connect
+2025-05-09 15:15:32 - INFO - After create_models
+2025-05-09 15:15:32 - INFO - <Server sockets=(<asyncio.TransportSocket fd=540, family=2, type=1, proto=0, laddr=('127.0.0.1', 5000)>,)> is serving
+2025-05-09 15:15:32 - INFO - Running on http://127.0.0.1:5000 (CTRL + C to quit)
+2025-05-09 15:15:35 - INFO - In func
+2025-05-09 15:15:38 - INFO - In func
+2025-05-09 15:16:58 - INFO - In func
+2025-05-09 15:17:29 - INFO - In func
+2025-05-09 15:23:57 - INFO - In func
+2025-05-09 15:25:01 - INFO - In func
+2025-05-09 15:31:26 - INFO - In func
+2025-05-09 15:31:42 - INFO - In func
+2025-05-09 15:33:04 - INFO - In func
+2025-05-09 17:22:31 - WARNING - Executing <TimerHandle when=69160.4563632 _set_result_unless_cancelled(<Future finis...events.py:459>, None) at C:\Users\理蝾韁AppData\Local\Programs\Python\Python313\Lib\asyncio\futures.py:310 created at C:\Users\理蝾韁AppData\Local\Programs\Python\Python313\Lib\asyncio\tasks.py:714> took 1.094 seconds
+2025-05-09 17:22:31 - WARNING - Executing <Task pending name='Task-2' coro=<observe_changes() running at C:\autotestingPython\FlaskServers\TicketCreater\.venv\Lib\site-packages\quart\utils.py:125> cb=[gather.<locals>._done_callback() at C:\Users\理蝾韁AppData\Local\Programs\Python\Python313\Lib\asyncio\tasks.py:820] created at C:\autotestingPython\FlaskServers\TicketCreater\.venv\Lib\site-packages\quart\app.py:873> took 0.288 seconds
+2025-05-09 17:22:32 - WARNING - Executing <Task pending name='Task-2' coro=<observe_changes() running at C:\autotestingPython\FlaskServers\TicketCreater\.venv\Lib\site-packages\quart\utils.py:125> cb=[gather.<locals>._done_callback() at C:\Users\理蝾韁AppData\Local\Programs\Python\Python313\Lib\asyncio\tasks.py:820] created at C:\autotestingPython\FlaskServers\TicketCreater\.venv\Lib\site-packages\quart\app.py:873> took 0.286 seconds
+2025-05-09 17:22:32 - WARNING - Executing <Task pending name='Task-2' coro=<observe_changes() running at C:\autotestingPython\FlaskServers\TicketCreater\.venv\Lib\site-packages\quart\utils.py:125> cb=[gather.<locals>._done_callback() at C:\Users\理蝾韁AppData\Local\Programs\Python\Python313\Lib\asyncio\tasks.py:820] created at C:\autotestingPython\FlaskServers\TicketCreater\.venv\Lib\site-packages\quart\app.py:873> took 0.283 seconds
+2025-05-09 17:22:32 - WARNING - Executing <Task pending name='Task-2' coro=<observe_changes() running at C:\autotestingPython\FlaskServers\TicketCreater\.venv\Lib\site-packages\quart\utils.py:125> cb=[gather.<locals>._done_callback() at C:\Users\理蝾韁AppData\Local\Programs\Python\Python313\Lib\asyncio\tasks.py:820] created at C:\autotestingPython\FlaskServers\TicketCreater\.venv\Lib\site-packages\quart\app.py:873> took 0.283 seconds
+2025-05-09 17:22:32 - WARNING - Executing <Task pending name='Task-2' coro=<observe_changes() running at C:\autotestingPython\FlaskServers\TicketCreater\.venv\Lib\site-packages\quart\utils.py:125> cb=[gather.<locals>._done_callback() at C:\Users\理蝾韁AppData\Local\Programs\Python\Python313\Lib\asyncio\tasks.py:820] created at C:\autotestingPython\FlaskServers\TicketCreater\.venv\Lib\site-packages\quart\app.py:873> took 0.281 seconds
+2025-05-09 17:29:46 - WARNING - Executing <TimerHandle when=69595.8166956 _set_result_unless_cancelled(<Future finis...events.py:459>, None) at C:\Users\理蝾韁AppData\Local\Programs\Python\Python313\Lib\asyncio\futures.py:310 created at C:\Users\理蝾韁AppData\Local\Programs\Python\Python313\Lib\asyncio\tasks.py:714> took 0.918 seconds
+2025-05-09 17:29:47 - WARNING - Executing <Task pending name='Task-2' coro=<observe_changes() running at C:\autotestingPython\FlaskServers\TicketCreater\.venv\Lib\site-packages\quart\utils.py:125> cb=[gather.<locals>._done_callback() at C:\Users\理蝾韁AppData\Local\Programs\Python\Python313\Lib\asyncio\tasks.py:820] created at C:\autotestingPython\FlaskServers\TicketCreater\.venv\Lib\site-packages\quart\app.py:873> took 0.365 seconds
+2025-05-09 18:05:21 - INFO - In func
+2025-05-09 18:07:24 - INFO - In func
+2025-05-09 18:37:36 - INFO - In func
+2025-05-09 18:38:44 - INFO - In func
+2025-05-09 18:41:02 - INFO - In func
+2025-05-09 18:41:36 - INFO - In func
+2025-05-09 18:42:56 - INFO - In func
+2025-05-09 19:36:38 - INFO - Tortoise-ORM shutdown
+2025-05-09 19:36:44 - INFO - Before connect
+2025-05-09 19:36:45 - INFO - After create_models
+2025-05-09 19:36:45 - INFO - <Server sockets=(<asyncio.TransportSocket fd=540, family=2, type=1, proto=0, laddr=('127.0.0.1', 5000)>,)> is serving
+2025-05-09 19:36:45 - INFO - Running on http://127.0.0.1:5000 (CTRL + C to quit)
+2025-05-09 19:37:06 - INFO - In func
+2025-05-09 19:37:57 - INFO - In func
+2025-05-09 19:38:57 - INFO - In func
+2025-05-09 19:40:13 - INFO - In func
+2025-05-09 19:43:25 - INFO - Tortoise-ORM shutdown
+2025-05-09 19:45:42 - INFO - Before connect
+2025-05-09 19:45:42 - INFO - After create_models
+2025-05-09 19:45:42 - INFO - <Server sockets=(<asyncio.TransportSocket fd=540, family=2, type=1, proto=0, laddr=('127.0.0.1', 5000)>,)> is serving
+2025-05-09 19:45:42 - INFO - Running on http://127.0.0.1:5000 (CTRL + C to quit)
+2025-05-09 19:45:44 - INFO - In func
+2025-05-09 19:46:32 - INFO - In func
+2025-05-09 19:47:18 - INFO - In func
+2025-05-09 19:47:31 - INFO - Tortoise-ORM shutdown

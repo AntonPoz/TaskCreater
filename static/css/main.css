@@ -1,0 +1,47 @@
+/*HEADER*/
+
+header {
+    position: sticky;
+    top: 0;
+    padding: 20px;
+    z-index: 1000;
+    background: white;
+    -webkit-box-shadow: 0 5px 25px rgba(0, 0, 0, 0.15);
+        box-shadow: 0 5px 25px rgba(0, 0, 0, 0.15);
+}
+
+.header__img {
+    height: 64px;
+    width: 64px;
+}
+
+.content h1,
+.content h2,
+.content h3,
+.content h4,
+.content h5,
+.content h6 {
+    text-align: center; /* центрирование заголовков */
+}
+
+.content p,
+.content ul,
+.content ol,
+.content div {
+    margin-left: 40px; /* отступ слева для основного содержимого */
+}
+
+.content {
+    max-width: 1200px; /* или любая другая максимальная ширина */
+    margin: 0 auto;    /* автоматические отступы по бокам для центрирования */
+    padding: 40px;     /* внутренний отступ */
+    box-sizing: border-box; /* учитывать padding в общей ширине */
+}
+
+footer {
+    padding: 0 20px; /* 0 — сверху и снизу, 2px — слева и справа */
+}
+.footer__img {
+    height: 36px;
+    width: 36px;
+}
