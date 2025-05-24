@@ -35,14 +35,14 @@
 
 
                 <div class="form-floating">
-                    <input type="text" class="form-control" id="companyNameInput" name="company_name" pattern='[А-ЯЁа-яё0-9\s\\"\«»]{2,200}' placeholder='ЗАО "ТЕХНОЛОГИИ"' required>
-                    <label for="companyNameInput">Официальное название компании</label>
+                    <input type="text" class="form-control" id="companyTinInput" name="company_tin" pattern='[0-9]{10,12}' placeholder='4345290330' required>
+                    <label for="companyTinInput">ИНН компании</label>
                 </div>
 
 
                 <div class="form-floating">
-                    <input type="text" class="form-control" id="contactNumberInput" name="contact_number" pattern="[+0-9]{12}" placeholder="+79995551122" required>
-                    <label for="contactNumberInput">Номер телефона</label>
+                    <input type="text" class="form-control" id="phoneNumberInput" name="phone_number" pattern="[+0-9]{12}" placeholder="+79995551122" required>
+                    <label for="phoneNumberInput">Номер телефона</label>
                 </div>
 
 

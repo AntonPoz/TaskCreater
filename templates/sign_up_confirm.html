@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Подтверждение email</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/sign_up_confirm.css')}}">
+</head>
+<body>
+    <div class="verification-box">
+        <div class="text-center mb-4">
+            <h2>Подтверждение email</h2>
+            <p class="text-muted">Мы отправили 6-значный код на вашу электронную почту</p>
+        </div>
+
+        <form id="verificationForm" method="post">
+<!--            <div class="mb-3">-->
+<!--                <label for="email" class="form-label">Ваш email</label>-->
+<!--                <input type="email" class="form-control" id="email" value="user@example.com" readonly>-->
+<!--            </div>-->
+
+            <div class="mb-3">
+                <label class="form-label">Код подтверждения</label>
+                <div class="code-inputs">
+                    <input type="text" maxlength="1" pattern="[0-9]" required>
+                    <input type="text" maxlength="1" pattern="[0-9]" required>
+                    <input type="text" maxlength="1" pattern="[0-9]" required>
+                    <input type="text" maxlength="1" pattern="[0-9]" required>
+                    <input type="text" maxlength="1" pattern="[0-9]" required>
+                    <input type="text" maxlength="1" pattern="[0-9]" required>
+                </div>
+                <input type="hidden" id="fullCode" name="verification_code">
+            </div>
+
+            <div class="d-grid gap-2">
+                <button type="submit" class="btn btn-primary">Подтвердить</button>
+                <button type="button" class="btn btn-link">Отправить код повторно</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const inputs = document.querySelectorAll('.code-inputs input');
+            const fullCodeInput = document.getElementById('fullCode');
+
+            // Автопереход между полями
+            inputs.forEach((input, index) => {
+                input.addEventListener('input', function() {
+                    if (this.value.length === 1) {
+                        if (index < inputs.length - 1) {
+                            inputs[index + 1].focus();
+                        }
+                    }
+                    updateFullCode();
+                });
+
+                // Обработка удаления символов
+                input.addEventListener('keydown', function(e) {
+                    if (e.key === 'Backspace' && this.value.length === 0) {
+                        if (index > 0) {
+                            inputs[index - 1].focus();
+                        }
+                    }
+                });
+            });
+
+            function updateFullCode() {
+                let code = '';
+                inputs.forEach(input => {
+                    code += input.value;
+                });
+                fullCodeInput.value = code;
+            }
+
+            // Обработка формы
+            document.getElementById('verificationForm').addEventListener('submit', function(e) {
+                const code = fullCodeInput.value;
+                if (code.length !== 6) {
+                    e.preventDefault();
+                    alert('Пожалуйста, введите полный 6-значный код');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

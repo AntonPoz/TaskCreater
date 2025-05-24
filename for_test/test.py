@@ -26,7 +26,7 @@ import re
 
 reg_exp = '[А-ЯЁа-яё0-9\s\\"\«»]{2,200}'
 string = 'ООО "Рога и копыта"'
-
+print(string.upper())
 print(re.match(reg_exp, string))
 
 

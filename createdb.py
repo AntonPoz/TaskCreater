@@ -22,7 +22,7 @@ from tortoise.exceptions import DBConnectionError
 class Users(Model):
     id = fields.IntField(pk=True)
     user_mail = fields.CharField(max_length=255)
-    company_name = fields.CharField(max_length=200)
+    company_tin = fields.CharField(max_length=200)
     phone_number = fields.CharField(max_length=12)
     contract_number = fields.CharField(max_length=6)
     password = fields.CharField(max_length=255)
@@ -44,32 +44,21 @@ async def connect():
         raise DBConnectionError(f'Ошибка подключения к БД: {exc}')
 
 
-async def create_user(user, password):
-    try:
-        hashed_password = hashlib.sha256(password.encode('utf-8')).hexdigest()
-        check_user = await Users.filter(username=user).exists()
-        # check_user_2 = await Users.filter(username=user).first()
-        if check_user:
-            return False
-        await Users.create(
-            username=user,
-            password=hashed_password
-        )
-        return True
-    except IntegrityError as exc:
-        raise IntegrityError(f'Ошибка: {exc} \n При попытке создания пользователя {user}')
 
-
-async def check_user(user_mail, hashed_password):
-    check_user = await Users.filter(user_mail=user_mail).first()
-    if check_user:
-        db_password = check_user.password
+async def check_user_password(user_mail, hashed_password):
+    user_data = await get_user_by(user_mail)
+    if user_data:
+        db_password = user_data.password
         if hashed_password == db_password:
-            return check_user
+            return user_data
         else:
             return False
     else:
         return False
+
+async def get_user_by(user_mail):
+    user_data = await Users.filter(user_mail=user_mail).first()
+    return user_data
 
 # async def get_content():
 #     content_data = await Content.all()
@@ -91,12 +80,30 @@ async def check_user(user_mail, hashed_password):
 #         })
 #     return json_data
 
-async def get_user(user_id):
+async def checking_user_presence(user_mail):
     try:
-        user_row = await Users.filter(id=user_id)
-        return user_row[0]
+        user_row = await Users.filter(user_mail=user_mail).exists()
+        print('user_row:', user_row)
+        if not user_row:
+            return False
+        else:
+            return True
     except Exception as exc:
         return False
+
+async def create_user(user_data):
+    try:
+        hashed_password = hashlib.sha256(user_data['password'].encode('utf-8')).hexdigest()
+        user = await Users.create(
+            user_mail=user_data['user_mail'],
+            company_tin=user_data['company_tin'],
+            phone_number=user_data['phone_number'],
+            contract_number=user_data['contract_number'],
+            password=hashed_password
+        )
+        return user
+    except IntegrityError as exc:
+        raise IntegrityError(f'Ошибка: {exc} \n При попытке создания пользователя {user}')
 
 # async def db_update_content(form_dict):
 #     if await Content.filter(id=form_dict['id']):
