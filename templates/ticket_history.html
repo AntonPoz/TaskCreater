@@ -1,11 +1,100 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Мои заявки</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="{{url_for('static', filename='css/ticket_history.css')}}">
 </head>
 <body>
-    <h1>Hello man</h1>
+  <div class="page d-flex flex-column min-vh-100">
+    <header class="py-3 bg-white shadow-sm sticky-top">
+      <div class="container d-flex justify-content-between align-items-center">
+        <a href="/" class="d-inline-flex text-decoration-none">
+          <img class="header__img" src="{{url_for('static', filename='img/logo.svg')}}" alt="" style="height: 64px; width: 64px;">
+        </a>
+        <div class="header-actions d-flex align-items-center">
+          <a href="create-issue.html" class="btn btn-primary mr-2">Создать заявку</a>
+          <a href="profile.html" class="btn btn-outline-primary mr-2">Профиль</a>
+          <button id="logout" class="btn btn-outline-primary">Выйти</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="container my-4 flex-fill">
+      <h1 class="text-center mb-4">Мои заявки</h1>
+
+      <div class="filters bg-white p-3 rounded shadow-sm mb-4 d-flex flex-nowrap align-items-center">
+        <select id="filter-type" class="mr-2 mb-0 custom-select" style="width: 200px;">
+          <option value="all">Все типы</option>
+          <option value="bug">Баг</option>
+          <option value="feature">Фича</option>
+        </select>
+        <select id="filter-status" class="mr-2 mb-0 custom-select" style="width: 200px;">
+          <option value="all">Все статусы</option>
+          <option value="open">Открыто</option>
+          <option value="in-progress">В работе</option>
+          <option value="closed">Закрыто</option>
+        </select>
+        <input type="text" id="search" placeholder="Поиск по теме..." class="form-control mb-0" style="width: 250px;">
+      </div>
+
+
+      <table class="table table-bordered bg-white shadow-sm">
+        <thead class="thead-light">
+          <tr>
+            <th>ID</th>
+            <th>Тип</th>
+            <th>Статус</th>
+            <th>Тема</th>
+            <th>Обновлено</th>
+            <th>Действия</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>Баг</td>
+            <td>Открыто</td>
+            <td>Кнопка "Сохранить" не работает</td>
+            <td>2024-05-20</td>
+            <td><a href="#" class="text-primary">Редактировать</a></td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>Фича</td>
+            <td>В работе</td>
+            <td>Добавить тёмную тему</td>
+            <td>2024-05-19</td>
+            <td><a href="#" class="text-primary">Редактировать</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </main>
+
+    <footer class="bg-white border-top py-3">
+      <div class="container d-flex justify-content-between align-items-center">
+        <div class="d-flex align-items-center">
+          <a href="/" class="text-secondary text-decoration-none mr-2">
+            <img src="{{url_for('static', filename='img/logo.svg')}}" alt="" style="height: 36px; width: 36px;">
+          </a>
+          <span class="text-muted">© 2024 MyCompany, Inc</span>
+        </div>
+        <div>
+          <a href="#" class="text-secondary mr-2">
+            <img src="{{url_for('static', filename='img/Logo_telegram.png')}}" alt="Telegram" style="height: 36px; width: 36px;">
+          </a>
+          <a href="#" class="text-secondary">
+            <img src="{{url_for('static', filename='img/Logo_web_site.png')}}" alt="WebSite" style="height: 36px; width: 36px;">
+          </a>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

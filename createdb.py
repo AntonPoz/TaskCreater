@@ -27,6 +27,26 @@ class Users(Model):
     contract_number = fields.CharField(max_length=6)
     password = fields.CharField(max_length=255)
 
+class UserTickets(Model):
+    id = fields.IntField(pk=True)
+    ticket_type = fields.CharField(max_length=255)
+    ticket_status = fields.CharField(max_length=20)
+    ticket_title = fields.CharField(max_length=100)
+    ticket_description = fields.CharField(max_length=4096)
+    software_name = fields.CharField(max_length=50)
+    software_version = fields.FloatField()
+    firmware_version = fields.FloatField()
+    system_software_version = fields.FloatField()
+    ticket_logs_id = fields.ForeignKeyField("models.UserLog",
+                                            source_field="log_file")
+
+class UserLog(Model):
+    id = fields.UUIDField(pk=True, default=uuid.uuid4)
+    ticket_log_file_name = fields.CharField(max_length=2048)
+    ticket_log_file_path = fields.CharField(max_length=4096)
+    ticket_log_file_size = fields.IntField()
+    ticket_last_update = fields.DateField(default=date.today())
+
 
 async def create_models():
     try:
