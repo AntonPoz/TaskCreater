@@ -1,14 +1,14 @@
 from quart import Quart, render_template, redirect, url_for, request, session
 import asyncio
 import hashlib
-from createdb import connect, create_models,  check_user_password, Tortoise, checking_user_presence, create_user
-# from hypercorn.config import Config
-# from hypercorn.asyncio import serve
+from createdb import (connect, close_connection, create_models,
+                      check_user_password, Tortoise,
+                      checking_user_presence, create_user, get_user_by_id)
 from werkzeug.exceptions import InternalServerError
 import logging
 import random
 import json
-from check_user_data import check_user_data, check_user_email, check_company_name
+from external_services import check_user_data, check_user_email, check_company_name
 
 
 app = Quart(__name__)
@@ -34,7 +34,7 @@ async def startup():
 @app.after_serving
 async def shutdown():
     """Выполняется при завершении работы"""
-    await Tortoise.close_connections()
+    await close_connection()
 
 @app.route('/')
 async def main():
@@ -57,7 +57,7 @@ async def sign_in():
         app.logger.info(f"In func")
         if request.method == 'POST':
             form = await request.form
-            user_mail = form['email']
+            user_mail = form['user_mail']
             password = form['password']
             if user_mail == '' or password == '':
                 error = 'Заполните все поля!'
@@ -86,33 +86,25 @@ async def sign_up():
         # app.logger.info(f"In func")
         if request.method == 'POST':
             form = await request.form
-            if form['email'] == '' or form['company_tin'] == ''\
+            if form['user_mail'] == '' or form['company_tin'] == ''\
                     or form['phone_number'] == '' or form['phone_number'] == ''\
                     or form['password'] == '':
                 error = 'Заполните все поля!'
                 return await render_template('sign_up.html', error=error)
             user_data = {
-                'user_mail': form['email'],
+                'user_mail': form['user_mail'],
                 'company_tin': form['company_tin'],
                 'phone_number': form['phone_number'],
                 'contract_number': form['contract_number'],
                 'password': form['password']
             }
             session['user_data'] = user_data
-            try:
-                check_company_tin_result = await check_company_name(user_data['company_tin'])
-                error = 'Данные компании - не корректны!'
-            except Exception as exc:
-                return await render_template('sign_up.html', error=error)
-            print(check_company_tin_result)
-            # json_response = json.load(check_company_tin_result)
-            # company_tin = json_response['items'][0]['ЮЛ']["ИНН"]
-
-            company_tin = check_company_tin_result['items'][0]['ЮЛ']["ИНН"]
-
-            if company_tin == user_data['company_tin']:
+            check_company_name_result = await check_company_name(user_data['company_tin'])
+            if check_company_name_result:
                 return redirect(url_for('sign_up_confirm'))
-
+            else:
+                error = 'Данные компании - не корректны!'
+                return await render_template('sign_up.html', error=error)
         return await render_template('sign_up.html', error=error)
     except Exception as e:
         app.logger.error(f"Sign in error: {str(e)}", exc_info=True)
@@ -123,12 +115,18 @@ async def sign_up():
 @app.route('/sign_up_confirm', methods=['GET', 'POST'])
 async def sign_up_confirm():
     user_data = session.get('user_data')
+    if not user_data:
+        return "Доступ запрещён, сначала необходимо пройти регистрацию", 403
     user_email = user_data['user_mail']
     if request.method=='POST':
         form = await request.form
+        app.logger.info(f"Проверка кода one-time_code: {session['one-time_code']}")
+        app.logger.info(f"Проверка кода verification_code: {form['verification_code']}")
         if session['one-time_code'] == int(form['verification_code']):
             if not await checking_user_presence(user_email):
                 create_user_result = await create_user(user_data)
+                app.logger.info(f"Верификация прошла, создаём пользователя: {user_data}")
+                session['user_id'] = create_user_result.id
                 print('User:', create_user_result)
                 if create_user_result:
                     return redirect(url_for('ticket_history'))
@@ -139,6 +137,7 @@ async def sign_up_confirm():
                 return 'Пользователь с такой почтой уже существует'
 
     random_code = random.randrange(100000, 999999)
+    app.logger.info(f"Generated random_code: {random_code} (type: {type(random_code)})")
     session['one-time_code'] = random_code
     check_email_result = check_user_email(user_email, random_code)
     return await render_template('sign_up_confirm.html')
@@ -147,6 +146,12 @@ async def sign_up_confirm():
 
 @app.route('/ticket_history', methods=['GET', 'POST'])
 async def ticket_history():
+    user_id = session.get('user_id')
+    if not user_id:
+        return "Доступ запрещён, сначала необходимо пройти регистрацию", 403
+    user = await get_user_by_id(user_id)
+    if not user:
+        return "Пользователь не найден", 403
     return await render_template('ticket_history.html')
 
 

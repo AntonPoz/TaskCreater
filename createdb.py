@@ -20,7 +20,7 @@ from tortoise.exceptions import DBConnectionError
 
 
 class Users(Model):
-    id = fields.IntField(pk=True)
+    id = fields.IntField(primary_key=True)
     user_mail = fields.CharField(max_length=255)
     company_tin = fields.CharField(max_length=200)
     phone_number = fields.CharField(max_length=12)
@@ -28,7 +28,7 @@ class Users(Model):
     password = fields.CharField(max_length=255)
 
 class UserTickets(Model):
-    id = fields.IntField(pk=True)
+    id = fields.IntField(primary_key=True)
     ticket_type = fields.CharField(max_length=255)
     ticket_status = fields.CharField(max_length=20)
     ticket_title = fields.CharField(max_length=100)
@@ -41,11 +41,28 @@ class UserTickets(Model):
                                             source_field="log_file")
 
 class UserLog(Model):
-    id = fields.UUIDField(pk=True, default=uuid.uuid4)
+    id = fields.UUIDField(primary_key=True, default=uuid.uuid4)
     ticket_log_file_name = fields.CharField(max_length=2048)
     ticket_log_file_path = fields.CharField(max_length=4096)
     ticket_log_file_size = fields.IntField()
     ticket_last_update = fields.DateField(default=date.today())
+
+
+async def connect(db_url=None, modules=None):
+    try:
+        await Tortoise.init(
+            db_url=db_url or "sqlite://flask_test_database.db",
+            modules=modules or {"models": ["createdb"]},
+            _create_db=True
+        )
+    except DBConnectionError as exc:
+        raise DBConnectionError(f'Ошибка подключения к БД: {exc}')
+
+async def close_connection():
+    try:
+        await Tortoise.close_connections()
+    except Exception as exc:
+        raise Exception(f'Ошибка создания модели БД: {exc}')
 
 
 async def create_models():
@@ -54,19 +71,9 @@ async def create_models():
     except Exception as exc:
         raise Exception(f'Ошибка создания модели БД: {exc}')
 
-async def connect():
-    try:
-        await Tortoise.init(
-            db_url="sqlite://flask_database.db",
-            modules={"models": ["createdb"]},
-        )
-    except DBConnectionError as exc:
-        raise DBConnectionError(f'Ошибка подключения к БД: {exc}')
-
-
 
 async def check_user_password(user_mail, hashed_password):
-    user_data = await get_user_by(user_mail)
+    user_data = await get_user_by_email(user_mail)
     if user_data:
         db_password = user_data.password
         if hashed_password == db_password:
@@ -76,9 +83,17 @@ async def check_user_password(user_mail, hashed_password):
     else:
         return False
 
-async def get_user_by(user_mail):
+async def get_user_by_email(user_mail):
     user_data = await Users.filter(user_mail=user_mail).first()
     return user_data
+
+async def get_user_by_id(user_id):
+    user_data = await Users.filter(id=user_id).first()
+    return user_data
+
+
+async def clear_user_model():
+    await Users.all().delete()
 
 # async def get_content():
 #     content_data = await Content.all()
@@ -123,7 +138,7 @@ async def create_user(user_data):
         )
         return user
     except IntegrityError as exc:
-        raise IntegrityError(f'Ошибка: {exc} \n При попытке создания пользователя {user}')
+        raise IntegrityError(f'Ошибка: {exc} \n При попытке создания пользователя {user_data['user_mail']}')
 
 # async def db_update_content(form_dict):
 #     if await Content.filter(id=form_dict['id']):
